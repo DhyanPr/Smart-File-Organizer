@@ -1,0 +1,6 @@
+[2026-04-30 16:57:00] [MOVED] C:\Users\patel\OneDrive\Desktop\TestFolder\004 Polymorphism In OOPS.mp4 -> C:\Users\patel\OneDrive\Desktop\TestFolder\Organized\Videos\004 Polymorphism In OOPS.mp4
+[2026-04-30 16:57:00] [MOVED] C:\Users\patel\OneDrive\Desktop\TestFolder\1 - Copy.webp -> C:\Users\patel\OneDrive\Desktop\TestFolder\Organized\Images\1 - Copy.webp
+[2026-04-30 16:57:00] [DUPLICATE] C:\Users\patel\OneDrive\Desktop\TestFolder\1.webp -> C:\Users\patel\OneDrive\Desktop\TestFolder\Organized\Duplicates\1.webp
+[2026-04-30 16:57:00] [MOVED] C:\Users\patel\OneDrive\Desktop\TestFolder\images.png -> C:\Users\patel\OneDrive\Desktop\TestFolder\Organized\Images\images.png
+[2026-04-30 16:57:00] [MOVED] C:\Users\patel\OneDrive\Desktop\TestFolder\Test_41_TFN.mp3 -> C:\Users\patel\OneDrive\Desktop\TestFolder\Organized\Audio\Test_41_TFN.mp3
+[2026-04-30 16:57:00] [MOVED] C:\Users\patel\OneDrive\Desktop\TestFolder\The-Art-of-Laziness (1).pdf -> C:\Users\patel\OneDrive\Desktop\TestFolder\Organized\Documents\The-Art-of-Laziness (1).pdf
