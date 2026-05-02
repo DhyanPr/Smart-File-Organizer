@@ -12,14 +12,19 @@ class FileOrganizer:
         self.hash_map = {}
         self.output_path = os.path.join(self.path, "Organized")
 
+        # ✅ For UI tracking
+        self.progress = 0
+        self.logs = []
+        self.error = None
+
     def organize(self):
         if not os.path.exists(self.path):
-            print("Invalid path!")
+            self.error = "Invalid path!"
             return
 
         total_files = self.count_files()
         if total_files == 0:
-            print("Folder is empty!")
+            self.error = "Folder is empty!"
             return
 
         processed = 0
@@ -53,8 +58,11 @@ class FileOrganizer:
                         self.show_progress(processed, total_files)
 
                     except Exception as e:
+                        self.error = str(e)
                         log(f"Error processing {file}: {e}")
 
+        # ✅ VERY IMPORTANT
+        self.progress = 100
         print("\n✅ Organization Complete!")
 
     def get_folder(self, filename):
@@ -74,12 +82,15 @@ class FileOrganizer:
         dest_path = self.handle_rename(dest_path)
 
         if self.dry_run:
-            print(f"[DRY-RUN] Would move: {src} -> {dest_path}")
+            message = f"[DRY-RUN] Would move: {src} -> {dest_path}"
+            print(message)
         else:
-            os.makedirs(dest_folder, exist_ok=True)  # ✅ create only when needed
+            os.makedirs(dest_folder, exist_ok=True)
             shutil.move(src, dest_path)
+            message = f"[MOVED] {src} -> {dest_path}"
 
-        log(f"[MOVED] {src} -> {dest_path}")
+        log(message)
+        self.logs.append(message)
 
     def handle_duplicate(self, file_path):
         dup_folder = os.path.join(self.output_path, "Duplicates")
@@ -89,12 +100,15 @@ class FileOrganizer:
         dest_path = self.handle_rename(dest_path)
 
         if self.dry_run:
-            print(f"[DRY-RUN] Would move duplicate: {file_path} -> {dest_path}")
+            message = f"[DRY-RUN] Would move duplicate: {file_path} -> {dest_path}"
+            print(message)
         else:
-            os.makedirs(dup_folder, exist_ok=True)  # ✅ create only when needed
+            os.makedirs(dup_folder, exist_ok=True)
             shutil.move(file_path, dest_path)
+            message = f"[DUPLICATE] {file_path} -> {dest_path}"
 
-        log(f"[DUPLICATE] {file_path} -> {dest_path}")
+        log(message)
+        self.logs.append(message)
 
     def handle_rename(self, path):
         base, ext = os.path.splitext(path)
@@ -117,5 +131,8 @@ class FileOrganizer:
     def show_progress(self, processed, total):
         if total == 0:
             return
-        percent = (processed / total) * 100
-        print(f"\rProcessing: {percent:.2f}% ({processed}/{total})", end="")
+
+        percent = int((processed / total) * 100)
+        self.progress = percent
+
+        print(f"\rProcessing: {percent}% ({processed}/{total})", end="")

@@ -1,0 +1,184 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main Container (Glass Card) */
+.container {
+    width: 420px;
+    padding: 40px;
+    border-radius: 18px;
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+    text-align: center;
+    color: white;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Title */
+h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 25px;
+}
+
+/* Input Field */
+input[type="text"] {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-size: 14px;
+}
+
+input::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+/* Checkbox */
+label {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* Button */
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Button Hover */
+button:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* Button Click */
+button:active {
+    transform: scale(0.98);
+}
+
+/* Loader Spinner */
+.loader {
+    margin: 20px auto;
+    border: 5px solid rgba(255,255,255,0.3);
+    border-top: 5px solid white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 10px;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    transition: width 0.4s ease;
+}
+
+/* Progress Text */
+#progress-text {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Completed Glow Effect */
+.completed {
+    color: #00ffcc;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #00ffcc; }
+    to { text-shadow: 0 0 15px #00ffcc; }
+}
+
+/* Logs Box */
+.logs {
+    margin-top: 15px;
+    max-height: 140px;
+    overflow-y: auto;
+    font-size: 12px;
+    background: rgba(0,0,0,0.35);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+/* Individual Log Line */
+.log-line {
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-family: monospace;
+    word-break: break-all;
+}
+
+/* Message */
+.message {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #00ffcc;
+    font-size: 15px;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
