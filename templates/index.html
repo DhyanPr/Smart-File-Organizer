@@ -11,8 +11,11 @@
     <h2>📂 Smart File Organizer</h2>
     <p class="subtitle">Organize files smartly with duplicate detection</p>
 
-    <form onsubmit="startLoading(); return false;">
-        <input type="text" name="path" placeholder="Enter folder path..." required>
+    <!--  UPDATED FORM -->
+    <form onsubmit="startLoading(); return false;" enctype="multipart/form-data">
+        
+        <!-- 🔁 REPLACED PATH INPUT WITH FILE UPLOAD -->
+        <input type="file" name="files" multiple required>
 
         <label>
             <input type="checkbox" name="dry_run"> Dry Run
@@ -44,7 +47,7 @@
 let interval = null;
 
 async function startLoading() {
-    // 🔄 Reset UI
+    //  Reset UI
     document.getElementById("loader").style.display = "block";
     document.getElementById("progress-container").style.display = "block";
     document.getElementById("logs-box").innerHTML = "";
@@ -57,7 +60,7 @@ async function startLoading() {
     const form = document.querySelector("form");
     const formData = new FormData(form);
 
-    // 🚀 Start backend
+    //  Start backend
     await fetch("/", {
         method: "POST",
         body: formData
@@ -66,7 +69,6 @@ async function startLoading() {
     let bar = document.getElementById("progress-bar");
     let logBox = document.getElementById("logs-box");
 
-    // 🛑 Prevent multiple intervals
     if (interval) clearInterval(interval);
 
     interval = setInterval(async () => {
@@ -74,24 +76,24 @@ async function startLoading() {
             let res = await fetch("/status");
             let data = await res.json();
 
-            // ✅ Update progress
+            // Update progress
             bar.style.width = data.progress + "%";
             progressText.innerText = data.progress + "% Completed";
 
-            // ✅ Better logs formatting
+            // Logs
             logBox.innerHTML = data.logs
                 .map(log => `<div class="log-line">${log}</div>`)
                 .join("");
 
-            // ✅ Completed
+            //  Completed
             if (data.progress >= 100) {
                 progressText.innerText = "✅ Completed!";
                 progressText.classList.add("completed");
-                document.getElementById("loader").style.display = "none"; // FIX
+                document.getElementById("loader").style.display = "none";
                 clearInterval(interval);
             }
 
-            // ❌ Error handling
+            //  Error
             if (data.error) {
                 logBox.innerHTML += `<div class="log-line">❌ ERROR: ${data.error}</div>`;
                 progressText.innerText = "❌ Failed";
